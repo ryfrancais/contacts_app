@@ -1,6 +1,11 @@
 #ifndef _CUSTOM_DEFINES_H
 #define _CUSTOM_DEFINES_H
 
+/*
+ * Error definitions
+ */
+#define NO_ERROR            0
+
 #define FIRSTNAME_LEN       40
 #define LASTNAME_LEN        50
 #define EMAIL_LEN           80
