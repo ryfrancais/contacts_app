@@ -17,6 +17,7 @@ typedef struct group
 {
     char group_name[GROUPNAME_LEN];
     int group_id;
+    char date_created[DATE_LEN];
 }group;
 
 int create_group(char group_name[GROUPNAME_LEN]);

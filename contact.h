@@ -21,6 +21,7 @@ typedef struct contact
     char emails[NUM_EMAILS][EMAIL_LEN];
     group member_of[MAX_GROUPS];
     int contact_id;
+    char date_added[DATE_LEN];
 }contact;
 
 int add_contact(contact new_contact);

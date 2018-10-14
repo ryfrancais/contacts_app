@@ -6,6 +6,8 @@
 #include "contact.h"
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
+#include <ncurses.h>
 
 /*
  * All methods for I/O are to be included here, including getting
