@@ -38,7 +38,7 @@ int io_main_show()
 
 int io_get_choice()
 {
-    int choice;
+    int choice = 0;
 
     printf("%s\r\n\r\n","Please Enter a Choice:");
     printf("%s\t%s\r\n", "(1):", "Create Group");
@@ -52,17 +52,15 @@ int io_get_choice()
     printf("%s\t%s\r\n", "(9):", "Exit");
     printf("%s\t%s\r\n", "(10):", "Option 10");
 
-    int good_choice = 0;
-    while (good_choice != 1) {
-        printf("\r\n\r\n%s", "Choice: ");
-        scanf("%d", &choice);
+    while (1) {
+        choice = stdin_num_getter("Choice");
         if (choice > 10 || choice < 1) {
-            printf("%s\r\n", "Error: Not a valid choice.");
+            printf("\r\n%s\r\n", "Error: Not a valid choice.");
             continue;
         }
-        good_choice = 1;
+        break;
     }
-    printf("%s: %d\r\n", "Your choice was: ", choice);
+    printf("\r\n%s: %d\r\n", "Your choice was", choice);
     return NO_ERROR;
 }
 
@@ -133,6 +131,57 @@ int io_delete_membership()
 int io_get_id()
 {
     return NO_ERROR;
+}
+
+/*
+ * stdin_num_getter(const char*)
+ * 
+ * Get integer input, and check for good input.
+ * 
+ * Args:
+ *      const char *question -> Text to be displayed before
+ *      getting input
+ * Returns:
+ *      int -> number input
+ */
+
+static int stdin_num_getter(const char *question)
+{
+    int input_num = -1;
+    int num = 0;
+    char *output = calloc(BUFF_LEN, sizeof(char));
+    int index = 0;
+
+    printf("%s:\r\n", question);
+    while (1) {
+        num = fgetc(stdin);
+        if (num == EOF || num == '\n' || num == '\r') {
+            output[index] = '\0';
+            break;
+        }
+
+        output[index] = num;
+        num -= '0';
+        output[index + 1] = '\0';
+        if (num <= 9 && num >= 0) {
+            if (input_num == -1)
+                input_num = num;
+            else
+                input_num = (10 * input_num) + num;
+        } else {
+            input_num = -1;
+            for (int i = 0; i < BUFF_LEN; i++) {
+                output[i] = ' ';
+            }
+            output[BUFF_LEN - 1] = '\0';
+            printf("\r%s\r", output);
+            index = -1;
+        }
+        index++; 
+        printf("\r%s", output);
+    }
+    fflush(stdout);
+    return input_num;
 }
 
 int main()

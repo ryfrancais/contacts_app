@@ -1,8 +1,10 @@
 #ifndef _CUSTOM_DEFINES_H
 #define _CUSTOM_DEFINES_H
 
-#define DEBUG               1
-#define VERSION_NUM         "0.0.1"
+#include <stdbool.h>
+
+#define DEBUG               true
+#define VERSION_NUM         "0.0.1.1"
 
 /*
  * Error definitions
@@ -16,5 +18,6 @@
 #define MAX_GROUPS          10
 #define GROUPNAME_LEN       80
 #define DATE_LEN            12
+#define BUFF_LEN            80
 
 #endif

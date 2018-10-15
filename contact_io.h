@@ -7,6 +7,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <ctype.h>
 #include <ncurses.h>
 
 /*
@@ -26,5 +27,7 @@ int io_delete_email();
 int io_add_membership();
 int io_delete_membership();
 int io_get_id();
+
+static int stdin_num_getter(const char *question);
 
 #endif
