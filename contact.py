@@ -1,7 +1,7 @@
 from constants import error as err
 from copy import deepcopy
 
-class contact:
+class Contact:
     def __init__(self, first_name,
                 last_name, emails,
                 member_of, date_added):
